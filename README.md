@@ -4,9 +4,21 @@
 
 Contains notebooks from:
 
+`/jupyter/`   
 [https://github.com/flashbots/eth2-research](https://github.com/flashbots/eth2-research) <br />
 [https://github.com/ethereum/rig](https://github.com/ethereum/rig) <br />
 
+`/notebooks/`   
+Are authored by Manifold Finance and Community members
+
+## Quickstart
+
+### Analysis of MEV rewards in ETH2 
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com//manifoldfinance/jupyter-notebooks/blob/master/jupyter/eth2-mev-calc.ipynb)
+
+This analysis is executed alongside the post we've released on MEV in eth2. Thanks to Taarush Vemulapalli and Alejo Salles for their contributions, as well as Pintail for the original code this analysis is based on.
+
+We re-use the code from this article by Pintail, adding additional considerations for MEV rewards using Flashbots data as a proxy for it. The Flashbots data we use has been collected by running an MEV-Geth node, querying the public mev-blocks API and looking at data in the public dashboard of Flashbots activity.
 
 ## Assessing the nature and impact of MEV in eth2.
 

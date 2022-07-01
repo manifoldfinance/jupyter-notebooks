@@ -1,7 +1,13 @@
-version: '2'
+version: '3.4'
+
 services:
   jupyter-base-notebook:
     image: docker.io/bitnami/jupyter-base-notebook:2
-    command: ["tail", "-f", "/dev/null"]
+    #build:
+      #context: .
+      #dockerfile: ./Dockerfile
+    #command: ["tail", "-f", "/dev/null"]
+    command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:8000 --nothreading --noreload"]
     ports:
-      - 8888:8888
+      - 8000:8000
+      - 5678:5678

@@ -1,0 +1,31 @@
+name: jupyter
+
+on:
+
+jobs:
+  notebook_update:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    env:
+      # any environment variables needed
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout repo
+        uses: actions/checkout@v3
+      - name: Set up Python3
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: python -m pip install --upgrade pip -r requirements.txt
+      - name: Update analysis notebook
+        run: |
+          python -m pip install jupyter nbconvert nbformat
+          jupyter nbconvert --to notebook --execute notebooks/environment_setup.ipynb --ExecutePreprocessor.kernel_name='python3' --output ../notebook_executed
+      - name: commit updated notebook
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: Plot update bot
+          message: "Update Notebook"
+          add: "notebook_executed.ipynb"
